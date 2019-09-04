@@ -20,7 +20,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "login with valid information" do
     get login_path
     assert_template 'sessions/new'
-    post login_path, params: { session: { email: @user.email, password: "ravi1996"} }
+    post login_path, params: { session: { email: @user.email, password: "password"} }
 
     assert_redirected_to @user
     follow_redirect!
@@ -32,7 +32,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   test "logout" do
     get login_path
-    post login_path, params: { session: { email: @user.email, password: "ravi1996"} }
+    post login_path, params: { session: { email: @user.email, password: "password"} }
     assert is_logged_in?
     assert_not current_user.nil?
     delete logout_path
